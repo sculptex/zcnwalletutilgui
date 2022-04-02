@@ -1,0 +1,362 @@
+object frmZcnWalletUtil: TfrmZcnWalletUtil
+  Left = 426
+  Height = 852
+  Top = 126
+  Width = 1225
+  Caption = 'ZCN Wallet Utility'
+  ClientHeight = 852
+  ClientWidth = 1225
+  Constraints.MinHeight = 400
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '2.0.12.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 120
+    Top = 175
+    Width = 1225
+    Align = alBottom
+    BorderWidth = 5
+    ClientHeight = 120
+    ClientWidth = 1225
+    Constraints.MinHeight = 100
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 11
+      Height = 23
+      Top = 11
+      Width = 1203
+      Align = alTop
+      BorderSpacing.Around = 5
+      Caption = 'SEED PHRASE'
+      Font.Height = -21
+      Font.Name = 'Sans'
+      ParentColor = False
+      ParentFont = False
+    end
+    object edSeedPhrase: TEdit
+      Left = 11
+      Height = 27
+      Top = 39
+      Width = 1203
+      Align = alTop
+      BorderSpacing.Around = 5
+      OnChange = edSeedPhraseChange
+      TabOrder = 0
+    end
+    object btnGetWalletData: TButton
+      Left = 11
+      Height = 38
+      Top = 71
+      Width = 218
+      Align = alLeft
+      AutoSize = True
+      BorderSpacing.Right = 5
+      BorderSpacing.Around = 5
+      Caption = 'Get Wallet Data From Seed Phrase'
+      Enabled = False
+      OnClick = btnGetWalletDataClick
+      TabOrder = 1
+    end
+    object btnNewWalletData: TButton
+      Left = 239
+      Height = 38
+      Top = 71
+      Width = 227
+      Align = alLeft
+      AutoSize = True
+      BorderSpacing.Right = 5
+      BorderSpacing.Around = 5
+      Caption = 'Create New Wallet and Seed Phrase'
+      OnClick = btnNewWalletDataClick
+      TabOrder = 2
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Height = 304
+    Top = 295
+    Width = 1225
+    Align = alBottom
+    AutoSize = True
+    ClientHeight = 304
+    ClientWidth = 1225
+    TabOrder = 1
+    object Label2: TLabel
+      Left = 6
+      Height = 14
+      Top = 150
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      Caption = 'ZCN Wallet Address'
+      ParentColor = False
+    end
+    object edZCNwaladdr: TEdit
+      Left = 6
+      Height = 27
+      Top = 169
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      TabOrder = 0
+    end
+    object edZCNcmd: TEdit
+      Left = 6
+      Height = 27
+      Top = 118
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      ReadOnly = True
+      TabOrder = 1
+    end
+    object Label4: TLabel
+      Left = 6
+      Height = 14
+      Top = 99
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      Caption = 'COMMAND'
+      ParentColor = False
+    end
+    object Label6: TLabel
+      Left = 6
+      Height = 23
+      Top = 6
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      Caption = 'ZCN'
+      Font.Height = -21
+      Font.Name = 'Sans'
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 6
+      Height = 14
+      Top = 252
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      Caption = 'ZCN Private Key'
+      ParentColor = False
+    end
+    object edZCNprivkey: TEdit
+      Left = 6
+      Height = 27
+      Top = 271
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      TabOrder = 2
+    end
+    object Label9: TLabel
+      Left = 6
+      Height = 14
+      Top = 201
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      Caption = 'ZCN Public Key'
+      ParentColor = False
+    end
+    object edZCNpubkey: TEdit
+      Left = 6
+      Height = 27
+      Top = 220
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      TabOrder = 3
+    end
+    object gbZCNwalletcli: TGroupBox
+      Left = 1
+      Height = 60
+      Top = 34
+      Width = 1223
+      Align = alTop
+      AutoSize = True
+      BorderSpacing.InnerBorder = 5
+      Caption = 'ZCN wallet CLI Selection'
+      ClientHeight = 43
+      ClientWidth = 1221
+      TabOrder = 4
+      object cbZwalletcli: TCheckBox
+        Left = 315
+        Height = 33
+        Top = 5
+        Width = 259
+        Align = alLeft
+        BorderSpacing.Left = 5
+        BorderSpacing.Right = 5
+        BorderSpacing.Around = 5
+        Caption = 'zwalletcli (Requires Online Connection)'
+        OnClick = cbZwalletcliClick
+        TabOrder = 0
+      end
+      object cbZcnwalletutil: TCheckBox
+        Left = 10
+        Height = 33
+        Top = 5
+        Width = 295
+        Align = alLeft
+        BorderSpacing.Left = 5
+        BorderSpacing.Right = 5
+        BorderSpacing.Around = 5
+        Caption = 'zcnwalletutil (Works Offline - Recommended)'
+        Checked = True
+        OnChange = cbZcnwalletutilChange
+        OnClick = cbZcnwalletutilClick
+        State = cbChecked
+        TabOrder = 1
+      end
+    end
+  end
+  object Panel4: TPanel
+    Left = 0
+    Height = 253
+    Top = 599
+    Width = 1225
+    Align = alBottom
+    AutoSize = True
+    ClientHeight = 253
+    ClientWidth = 1225
+    TabOrder = 2
+    object Label3: TLabel
+      Left = 6
+      Height = 14
+      Top = 150
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      Caption = 'ETH Wallet Address'
+      ParentColor = False
+    end
+    object edETHwaladdr: TEdit
+      Left = 6
+      Height = 27
+      Top = 169
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      TabOrder = 0
+    end
+    object edETHcmd: TEdit
+      Left = 6
+      Height = 27
+      Top = 118
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      ReadOnly = True
+      TabOrder = 1
+    end
+    object Label5: TLabel
+      Left = 6
+      Height = 14
+      Top = 99
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      Caption = 'COMMAND'
+      ParentColor = False
+    end
+    object Label7: TLabel
+      Left = 6
+      Height = 23
+      Top = 6
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      Caption = 'ETHEREUM'
+      Font.Height = -21
+      Font.Name = 'Sans'
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label10: TLabel
+      Left = 6
+      Height = 14
+      Top = 201
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      Caption = 'ETH Private Key'
+      ParentColor = False
+    end
+    object edETHprivkey: TEdit
+      Left = 6
+      Height = 27
+      Top = 220
+      Width = 1213
+      Align = alTop
+      BorderSpacing.Around = 5
+      TabOrder = 2
+    end
+    object gbETHcli: TGroupBox
+      Left = 1
+      Height = 60
+      Top = 34
+      Width = 1223
+      Align = alTop
+      AutoSize = True
+      BorderSpacing.InnerBorder = 5
+      Caption = 'ETH wallet CLI Selection'
+      ClientHeight = 43
+      ClientWidth = 1221
+      TabOrder = 3
+      object cbEthgethhdwallet: TCheckBox
+        Left = 10
+        Height = 33
+        Top = 5
+        Width = 304
+        Align = alLeft
+        BorderSpacing.Left = 5
+        BorderSpacing.Right = 5
+        BorderSpacing.Around = 5
+        Caption = 'geth-hdwallet (Works Offline - Recommended)'
+        Checked = True
+        OnChange = cbZcnwalletutilChange
+        OnClick = cbZcnwalletutilClick
+        State = cbChecked
+        TabOrder = 0
+      end
+    end
+  end
+  object Panel5: TPanel
+    Left = 0
+    Height = 175
+    Top = 0
+    Width = 1225
+    Align = alClient
+    BorderWidth = 5
+    ClientHeight = 175
+    ClientWidth = 1225
+    TabOrder = 3
+    object Memo2: TMemo
+      Left = 6
+      Height = 163
+      Top = 6
+      Width = 1213
+      Align = alClient
+      Alignment = taCenter
+      Font.Color = clMaroon
+      Lines.Strings = (
+        'This Software is provided in good faith and without warranty.'
+        'It is to assist with automating deployment of services on ZCN network.'
+        'You should satisfy yourself that you have obtained this software from a legitimate source.'
+        'This software can be run OFFLINE. It is highly recommended to use it OFFLINE.'
+        'You should ensure that your computer is up-to-date and free from viruses or malware such as keyloggers before entering any real data into this application.'
+        'You should test/familiarize yourself with this software using dummy wallet details BEFORE using real details.'
+        ''
+        'A Dummy ETH account can be generated/restored using https://myetherwallet.com and selecting SOFTWARE > MNEMONIC PHRASE option'
+        'A Dummy ZCN account can be generated/restored using https://beta.0chain.net'
+      )
+      ParentFont = False
+      TabOrder = 0
+    end
+  end
+end
